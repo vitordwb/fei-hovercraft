@@ -3,7 +3,7 @@
 # github/vitordwb
 # © Todos os direitos reservados
 
-from machine import Pin
+from machine import Pin, PWM
 import network
 import time
 from time import sleep
@@ -54,30 +54,34 @@ def cb(topic, msg):
         else:
             motors_base.value(0)
         
-    if topic == b'motor_direction/power':
-        if int( msg.decode() ) >= 1:
-            motor_direction_right.value(1)
-            motor_direction_left.value(0)
-            
-        if int( msg.decode() ) <= 0:
-            motor_direction_right.value(0)
-            motor_direction_left.value(1)
-
+    if topic == b'motor_direction/right':
+        motor_right.duty( int( msg.decode() ) )
+        
+    if topic == b'motor_direction/left':
+        motor_left.duty( int( msg.decode() ) )
+        
 
 # Pinos a utilizar para os LEDs com o ESP32
 motors_base           = Pin(2, Pin.OUT)
 MOTORS_BASE_TOPIC     = b'motor_base/power'
 
-motor_direction_left  = Pin(22, Pin.OUT)
-motor_direction_right = Pin(23, Pin.OUT)
-MOTOR_DIRECTION_TOPIC = b'motor_direction/power'
+motor_direction_left  = Pin(15, Pin.OUT)
+MOTOR_LEFT_TOPIC      = b'motor_direction/left'
+
+motor_direction_right = Pin(4, Pin.OUT)
+MOTOR_RIGHT_TOPIC     = b'motor_direction/right'
+
+# Definindo PWM
+motor_left  = PWM(motor_direction_left, freq=1000, duty=0)
+motor_right = PWM(motor_direction_right, freq=1000, duty=0)
 
 # Funcao Callback
 client.set_callback(cb)
 
 # Inscricao nos topicos
 client.subscribe(MOTORS_BASE_TOPIC)
-client.subscribe(MOTOR_DIRECTION_TOPIC)
+client.subscribe(MOTOR_LEFT_TOPIC)
+client.subscribe(MOTOR_RIGHT_TOPIC)
 
 #===============================================================
 # Função
