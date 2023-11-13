@@ -1,4 +1,4 @@
-# Codigo projeto embarcados :: hovercraft
+# Projeto de Sistemas Embarcados :: hovercraft
 # Autor: Vitor Watanabe
 # github/vitordwb
 # © MIT License
@@ -10,8 +10,6 @@ from time import sleep
 from umqtt.robust import MQTTClient
 import sys
 
-print('running main')
-
 #===============================================================
 # MQTT
 #===============================================================
@@ -21,33 +19,27 @@ MQTT_BROKER_URL = '10.3.141.1'
 
 client = MQTTClient(CLIENT_NAME, MQTT_BROKER_URL)
 
-try:
-    client.connect()
-    print('mqtt connected')
-except Exception as e:
-    print('ERROR | nao foi possivel conectar ao servidor MQTT {}{}'.format( type(e).__name__, e) )
-    sys.exit()
-
+while True:
+    try:
+        client.connect()
+        print('SUCCESS | mqtt connected')
+        break  # sai do loop se a conexão for bem-sucedida
+    except Exception as e:
+        # print('ERROR | não foi possível conectar ao servidor mqtt {}{}'.format(type(e).__name__, e))
+        time.sleep(2)  # Espera 2 segundos antes de tentar novamente
 
 #===============================================================
-# Funcao callback
-# Esta funcao eh executada quando algum dispositivo publica uma
+# Funcao Callback
+# esta funcao é executada quando algum dispositivo publica uma
 # mensagem em um topico em que seu ESP esta inscrito.
-# Altere a funcao abaixo para adicionar a logica ao seu programa,
+# altere a funcao abaixo para adicionar a logica ao seu programa,
 # para que quando um dispositivo publicar uma mensagem em um
-# topico que seu ESP esteja inscrito, voce possa executar uma funcao.
+# topico que seu ESP esteja inscrito, voce pode executar uma funcao.
 #===============================================================
 
 def cb(topic, msg):
     print('received data:  TOPIC = {}, MSG = {}'.format( topic, msg ))
-    # Para recepcao de dados do tipo numerico, eh necessario
-    # converter o texto em numero
-    # Recebendo os dados:
-        #recieved_data = str(msg,'utf-8')
-        #if recieved_data == "0":
-        #    led.value(0)
-        #if recieved_data == "1":
-        #    led.value(1)
+
     if topic == b'motor_base/power':
         if msg == b'true':
             motors_base.value(1)
@@ -92,7 +84,7 @@ while True:
         client.check_msg()
 #         client.publish( BTN_TOPIC, str(btn.value()).encode() )
         
-    except: # Caso a conexao for perdida
+    except: # caso a conexao for perdida
         client.disconnect()
         sys.exit()
 

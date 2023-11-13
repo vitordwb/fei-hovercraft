@@ -1,9 +1,6 @@
 import network
 import time
 
-print('hello vitor')
-print('running boot')
-
 WIFI_SSID     = "raspi-webgui-02"
 WIFI_PASSWORD = 'raspberrypi'
 MAX_RETRIES = 50
@@ -24,14 +21,10 @@ def wait_for_connection(wifi):
 
     return wifi.isconnected()
 
-def main():
-    wifi = connect_wifi()
+wifi = connect_wifi()
 
-    if wait_for_connection(wifi):
-        print('Wifi Connected')
-    else:
-        print('ERROR | Não foi possível conectar')
-        sys.exit()
-
-# Conecta ao roteador WiFi
-main()
+if wait_for_connection(wifi):
+    print('SUCCESS | wifi connected')
+else:
+    print('ERROR | não foi possível conectar')
+    sys.exit()
