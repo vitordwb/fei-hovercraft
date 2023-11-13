@@ -1,6 +1,6 @@
 # Hovercraft
 
-Este repositório contém todos os arquivos e documentações relacionados ao projeto de construção de um modelo/protótipo de um veículo do tipo Hovercraft. Este projeto é parte de um trabalho acadêmico realizado pelos alunos da disciplina ELD050, onde são aplicados conceitos de mecânica, elétrica/eletrônica, e lógica de programação.
+Este repositório contém todos os arquivos e documentações relacionados ao projeto de construção de um modelo de um veículo do tipo Hovercraft. Este projeto é parte de um trabalho acadêmico realizado pelos alunos da disciplina ELD050, onde são aplicados conceitos de mecânica, elétrica/eletrônica, e lógica de programação.
 
 ### Objetivos
 
@@ -23,3 +23,5 @@ Para acessar e controlar o Hovercraft, siga as instruções abaixo:
 ## Licença
 
 Este projeto está sob a licença MIT.
+
+relatório final pode ser visto [aqui](https://docs.google.com/document/d/1OZH1xZSZnsJZxz1o9irQCIzuW19rRDihelzK9D0PbxU/edit?usp=sharing)
