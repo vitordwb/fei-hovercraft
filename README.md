@@ -10,7 +10,7 @@ O objetivo do projeto é desenvolver um Hovercraft controlado por um sistema emb
 
 - `/docs` - Documentação do projeto, incluindo desenhos técnicos e diagramas de circuitos.
 - `/src` - Código fonte do controle embarcado e da implementação MQTT.
-- `/code-exame` - Exemplos de códigos relacionados ao projeto.
+- `/code-example` - Exemplos de códigos relacionados ao projeto.
 
 ## Como Usar
 
