@@ -1,7 +1,7 @@
 # Codigo projeto embarcados :: hovercraft
 # Autor: Vitor Watanabe
 # github/vitordwb
-# © Todos os direitos reservados
+# © MIT License
 
 from machine import Pin, PWM
 import network
